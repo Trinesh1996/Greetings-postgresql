@@ -1,0 +1,28 @@
+<div class="container-fluid">
+<div class="row">
+<div class="col-sm-12"> 
+<h2>Users Generated</h2>
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>User Name</th>
+        <th>Number of Times Users Greeted</th>
+      </tr>
+    </thead>
+    
+    {{#each names}}
+    <tbody>
+      <tr>
+        <td>{{id}}</td>
+        <td><a href="/greeted/{{user_name}}"><p>{{user_name}}</p></a></td>
+        <td>{{count_no}}</td>
+      </tr>
+    </tbody>
+    {{/each}}
+  </table>
+</div>
+
+
+

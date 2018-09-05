@@ -6,10 +6,6 @@ node_js:
 
 env:
   - DATABASE_URL=postgresql://postgres@localhost:5432/Greetings
-  global:
-     PGPORT=5432
-
-
 
 before_script:
   - psql -c 'create database Greetings;' -U postgres

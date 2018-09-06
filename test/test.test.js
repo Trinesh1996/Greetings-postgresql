@@ -22,31 +22,33 @@ describe("Greeting Tests", async function(){
 		await pool.query("ALTER SEQUENCE users_id_seq RESTART 1;");
 	})
 
-	it("should return a greet message in English when the language and a name in specified", async function(){
+	it("should return a greet message in English when the language and a name is specified", async function(){
 		var GreetUsers = greeting(pool);
 		assert.equal("Hello, Trinesh!", await GreetUsers.user_names_lang("English", "Trinesh"));
 	});
 
 
-	it("should return a greet message in isiXhosa when the language and a name in specified", async function(){
+	it("should return a greet message in isiXhosa when the language and a name is specified", async function(){
 		var GreetUsers = greeting(pool);
 		assert.equal("Molo, Jack!", await GreetUsers.user_names_lang("isiXhosa", "Jack"));
 	});
 
-	it("should return a greet message in Afrikaans when the language and a name in specified", async function(){
+	it("should return a greet message in Afrikaans when the language and a name is specified", async function(){
 		var GreetUsers = greeting(pool);
 		assert.equal("Goeie More, Anele!", await GreetUsers.user_names_lang("Afrikaans", "Anele"));
 	});
 
-	it("check how many times a user has been greeted", async function(){
+	it("should check how many times a user has been greeted", async function(){
 		var GreetUsers = greeting(pool);
 
 		await GreetUsers.user_names_lang("Afrikaans", "Anele");
-		await GreetUsers.user_names_lang("English", "Trinesh");
 		await GreetUsers.user_names_lang("isiXhosa", "Anele");
+		await GreetUsers.user_names_lang("isiXhosa", "Joe");
 		// DONT FORGET ABOUT THE AWAIT !!!!!!! * NOTE TO SELF #LOVE
 		assert.equal(await GreetUsers.counts(), 2)
+		
 
+		// reset database and check again
 		await pool.query("DELETE FROM users;");
 		await GreetUsers.user_names_lang("Afrikaans", "Anele");
 		await GreetUsers.user_names_lang("English", "Trinesh");

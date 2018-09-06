@@ -36,7 +36,7 @@ module.exports = function(pool){
   async function counts(){
    let results = await pool.query('SELECT * FROM users');
     return results.rows.length;
-  }
+  } 
 
   async function reset(){
     let results =  await pool.query('DELETE FROM users;');

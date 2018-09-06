@@ -4,7 +4,6 @@ const express = require("express"),
       session = require("express-session"),
       flash = require("express-flash"),
       exphbs = require('express-handlebars'),
-      cookieParser = require("cookie-parser"),
       pg = require("pg"),
       Pool = pg.Pool,
       greetingPool = require("./public/greeting");
@@ -62,7 +61,7 @@ app.post('/greetings', async function(req, res){
   let language = req.body.LanguageType;
 
   if (name == "" || name === undefined) {
-    // 'error' is the key
+    // 'errorOne' is the key
     req.flash('errorOne', 'Please enter name below');
   }
 

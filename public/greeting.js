@@ -4,7 +4,8 @@ module.exports = function(pool){
   // re a sequence of characters that define a search pattern
   // used by string searching algorithms
   async function user_names_lang(language, name) {
-    if (language !== undefined && name !== "") {
+    let char = /^[A-Za-z]+$/;
+    if (language !== undefined && name !== "" && name.match(char)) {
       let user_names = await pool.query('SELECT * from users where user_name = $1', [name]);
 
       if(user_names.rows.length === 0){
@@ -27,7 +28,7 @@ module.exports = function(pool){
   }
   async function getCounts(user){
     let greets = await pool.query('select count_no from users where user_name = $1', [user]);
-      return greets.rows[0].count_no;
+      return greets.rows[0].count_no;      
   }
   async function checkNames(){
     let results = await pool.query('SELECT user_name FROM users');
@@ -35,9 +36,8 @@ module.exports = function(pool){
   }
   async function counts(){
    let results = await pool.query('SELECT * FROM users');
-    return results.rows.length;
-  } 
-
+      return results.rows.length;
+  }
   async function reset(){
     let results =  await pool.query('DELETE FROM users;');
     let resetID = await pool.query('ALTER SEQUENCE users_id_seq RESTART 1;')

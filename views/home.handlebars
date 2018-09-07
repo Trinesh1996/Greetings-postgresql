@@ -1,6 +1,6 @@
 <div class="container fluid">
-  <div class="row greet">
-    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+  <div class="row">
+    <div class="col-sm">
       <h1>Greeting</h1>
         <h3>What is your name?</h3>
         </div>
@@ -9,11 +9,12 @@
     </div>
 
     <div class="container fluid">
-    <div class=row>
-    <div class = col-md-10>
+    <div class="row">
+    <div class = "col-sm">
     <div class="errorOne">
     {{messages.errorOne}}
     </div>
+    <i class="fas fa-language"></i>
     </div>
     </div>
     </div>
@@ -22,33 +23,30 @@
 <form class="" action="/greetings" method="post">
   <div class="container fluid">
     <div class="row">
-      <div class = "col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+      <div class = "col-sm">
         <input type="text" name="theUsers" value="{{names}}" placeholder="Your name please..." class="nameText">
         </div>
-      <div class="col-md-1">
-        <input class="btn btn-outline-dark btn-lg" type="submit" value="Greet"></input>            
+        <input class="btn btn-outline-dark btn-sm" type="submit" value="Greet"></input>
       </div>
-      
-    </div>
   </div>
 
 
   <div class="container fluid">
     <div class="row">
-      <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 col-xl-10">
+      <div class="col-sm">
       <h5>Language</h5>
 
-      <label class="lang">
+      <label class="radio-inline">
         <input type="radio" name="LanguageType" class="LanguageTypeRadio" value="English">
         <span class="label-body">English</span>
       </label>
 
-      <label class="lang2">
+      <label class="radio-inline">
         <input type="radio" name="LanguageType" class="LanguageTypeRadio" value="Afrikaans">
         <span class="label-body" >Afrikaans</span>
       </label>
 
-      <label class="lang3">
+      <label class="radio-inline">
         <input type="radio" name="LanguageType" class="LanguageTypeRadio" value="isiXhosa">
         <span class="label-body">isiXhosa</span>
       </label>      
@@ -59,7 +57,7 @@
 
 <div class="container fluid">
 <div class="row">
-<div class="col-md-10">
+<div class="col-sm">
 <div class="errorTwo">
 <span class="">{{messages.errorTwo}}</span>
 </div>
@@ -68,13 +66,13 @@
 </div>
 
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md">
     <a href="/greeted"><button class="btn btn-outline-secondary border" type="button" name="button">Greeted People</button></a>     
     <a href="/reset"><button class="btn btn-outline-secondary border" type="submit" name="button">Reset</button></a>
 </div>
 </div>
 
-<div class="col-md-2">
+<div class="col-md">
   <span id="bold">Count: {{count}}</span>  
 </div>
     

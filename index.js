@@ -3,6 +3,7 @@ const express = require("express"),
       bodyParser = require("body-parser"),
       session = require("express-session"),
       flash = require("express-flash"),
+      flashNotification = require("express-flash-notification")
       exphbs = require('express-handlebars'),
       pg = require("pg"),
       Pool = pg.Pool,
@@ -10,7 +11,7 @@ const express = require("express"),
 
 // init modules, env , port
 let app = express(),
-    PORT = process.env.PORT || 3012;
+    PORT = process.env.PORT || 3013;
 
 // customize the greeted people route
 // Design for mobile Make ajustments to texts and colors
@@ -76,7 +77,8 @@ app.post('/greetings', async function(req, res){
 });
 
 app.get("/reset", async function(req, res, next){
-  await GreetingUsers.reset();
+  let reset = await GreetingUsers.reset();
+  
   res.redirect("/")
 })
 
@@ -96,6 +98,7 @@ app.get('/greeted/:user_name', async function(req, res){
   let count = await GreetingUsers.getCounts(name);
   let names = await GreetingUsers.checkNames();  
   let message = `${name} has been greeted ${count}`;
+
 
   res.render("singleGreet", {names, message});
 });

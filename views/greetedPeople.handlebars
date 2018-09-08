@@ -1,35 +1,52 @@
-<div class="container-fluid">
-<div class="row">
-<div class="col-sm-12"> 
-<h2>Users Generated</h2>
-
-<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>User Name</th>
-        <th>Number of Times Users Greeted</th>
-      </tr>
-    </thead>
-    
-    {{#each names}}
-    <tbody>
-      <tr>
-        <td>{{id}}</td>
-        <td><a href="/greeted/{{user_name}}"><p>{{user_name}}</p></a></td>
-        <td>{{count_no}}</td>
-      </tr>
-    </tbody>
-    {{/each}}
-  </table>
-  <div class="container fluid">
+<header>
+  <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-12">
-        <h3>Top 3</h3>
-      </div>
+      <div class="col-sm head">
+        <a href="/"><i class="fas fa-home"></i></a>
     </div>
   </div>
 </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 cap">
+    <h2>Users Generated</h2>
+    <hr>
+    </div>
+  </div>
+</div>
+
+<div class="container fluid">
+  <div class="row">
+    <div class="col-12 tables">
+      <table class="table table-bordered">
+        <thead class="">
+          <tr>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Number of Times Users Greeted</th>
+          </tr>
+        </thead>
+    
+        {{#each names}}
+          <tbody>
+            <tr>
+              <td>{{id}}</td>
+              <td><a href="/greeted/{{user_name}}"><p>{{user_name}}</p></a></td>
+              <td>{{count_no}}</td>
+            </tr>
+          </tbody>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+</div>
+  
+
+
+
+
 
 
 

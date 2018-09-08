@@ -54,27 +54,28 @@ app.get('/', async function(req, res, next){
     res.render("home", {count});
   });
 
-
 app.post('/greetings', async function(req, res){
   // console.log(req.body);
   let count = await GreetingUsers.counts();
   let name = req.body.theUsers;
   let language = req.body.LanguageType;
+  let char = /^[A-Za-z]+$/;
 
   if (name == "" || name === undefined) {
     // 'errorOne' is the key
     req.flash('errorOne', 'Please enter name below');
   }
 
+  if (name != name.match(char)){
+    req.flash('errorThree', 'Please enter the right format eg."Trinesh, TRINESH, trinesh"')
+  }
   if (language === undefined || language === "") {
     req.flash('errorTwo', "Please choose language")
   }
   let returnsValues = await GreetingUsers.user_names_lang(language, name);
-  
-
-  res.render("home", {returnsValues, count});
-  
+  res.render("home", {returnsValues, count});  
 });
+
 
 app.get("/reset", async function(req, res, next){
   let reset = await GreetingUsers.reset();
@@ -87,7 +88,7 @@ app.get('/greeted', async function(req, res, next){
   let count = await GreetingUsers.counts();
   let users = await pool.query('select * from users');
   let names = users.rows;
-
+  
   res.render("greetedPeople", {names, count})
 })
 
@@ -98,7 +99,6 @@ app.get('/greeted/:user_name', async function(req, res){
   let count = await GreetingUsers.getCounts(name);
   let names = await GreetingUsers.checkNames();  
   let message = `${name} has been greeted ${count}`;
-
 
   res.render("singleGreet", {names, message});
 });

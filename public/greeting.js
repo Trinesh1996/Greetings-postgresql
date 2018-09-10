@@ -14,7 +14,7 @@ module.exports = function(pool){
       let user_names = await pool.query('SELECT * from users where user_name = $1', [name]);
 
       if(user_names.rows.length === 0){
-        await pool.query('INSERT into users(user_name, count_no) values($1, $2)', [name, 0]);
+        await pool.query('INSERT into users(user_name, count_no) values($1, $2)', [name, 1]);
       }
       else {
         await pool.query("UPDATE users set count_no = count_no +1 WHERE user_name = $1", [name])
@@ -43,7 +43,7 @@ module.exports = function(pool){
   }
   async function counts(){
    let results = await pool.query('SELECT * FROM users');
-      return results.rowCount;
+      return results.rows.length;
   }
   async function reset(){
     let results =  await pool.query('DELETE FROM users;');

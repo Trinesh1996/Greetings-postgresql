@@ -51,15 +51,19 @@ app.use(flash());
 // Keep count on screen
 app.get('/', async function(req, res, next){
     let count = await GreetingUsers.counts();
+    console.log(count)
     res.render("home", {count});
   });
 
 app.post('/greetings', async function(req, res){
-  // console.log(req.body);
-  let count = await GreetingUsers.counts();
   let name = req.body.theUsers;
   let language = req.body.LanguageType;
   let char = /^[A-Za-z]+$/;
+  // console.log(req.body);
+  let returnsValues = await GreetingUsers.user_names_lang(language, name);
+  let count = await GreetingUsers.counts();
+
+  res.render("home", {returnsValues, count});  
 
   if (name == "" || name === undefined) {
     // 'errorOne' is the key
@@ -72,8 +76,7 @@ app.post('/greetings', async function(req, res){
   if (language === undefined || language === "") {
     req.flash('errorTwo', "Please choose language")
   }
-  let returnsValues = await GreetingUsers.user_names_lang(language, name);
-  res.render("home", {returnsValues, count});  
+
 });
 
 

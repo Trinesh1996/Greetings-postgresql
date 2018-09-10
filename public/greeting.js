@@ -32,7 +32,6 @@ module.exports = function(pool){
       }
   }
 
-
   async function getCounts(user){
     let greets = await pool.query('select count_no from users where user_name = $1', [user]);
       return greets.rows[0].count_no;      
@@ -54,7 +53,15 @@ module.exports = function(pool){
       resetId: resetID.rows
    }
  }
+
+   async function resetTwo(){
+    let results =  await pool.query('DELETE FROM users;');
+    return {
+      result: results.rows   
+    }
+  }
+
    return {
-    user_names_lang,counts,getCounts,checkNames,reset
+    user_names_lang,counts,getCounts,checkNames,reset,resetTwo
   }
 }

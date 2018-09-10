@@ -61,6 +61,7 @@
     font-size: 30px;
     color: darkgoldenrod;
   }
+
   .border{
     border-style: solid;
     border-color: black;
@@ -89,6 +90,10 @@
   .fa-home {
     font-size: 2em;
     color: yellow;
+  }
+  .fa-recycle {
+    font-size: 2em;
+    color: blue;
   }
   th {
     background-color: lightblue;

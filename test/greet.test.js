@@ -78,6 +78,12 @@ describe("Greeting Tests", async function(){
 		assert.deepEqual({result: [], resetId: []}, await GreetUsers.reset());
 
 	});
+	it("should return error when name is unspecified or has special characters", function(){
+		var GreetUsers.user_names_lang(pool);
+		await GreetUsers.user_names_lang("English", "Y7791");
+
+		assert.deepEqual()
+	})
 	after(function () {
 		pool.end();
     })

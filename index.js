@@ -56,27 +56,27 @@ app.get('/', async function(req, res, next){
   });
 
 app.post('/greetings', async function(req, res){
-  let name = req.body.theUsers;
-  let language = req.body.LanguageType;
-  let char = /^[A-Za-z]+$/;
-  // console.log(req.body);
-  let returnsValues = await GreetingUsers.user_names_lang(language, name);
-  let count = await GreetingUsers.counts();
 
-  res.render("home", {returnsValues, count});  
+    let name = req.body.theUsers;
+    let language = req.body.LanguageType;
+    let char = /^[A-Za-z]+$/;
+    // console.log(req.body);
+    let returnsValues = await GreetingUsers.user_names_lang(language, name);
+    let count = await GreetingUsers.counts();
 
-  if (name == "" || name === undefined) {
+    if (name == "" || name === undefined) {
     // 'errorOne' is the key
     req.flash('errorOne', 'Please enter name below');
-  }
+    }
 
-  if (name != name.match(char)){
-    req.flash('errorThree', 'Please enter the right format eg."Trinesh, TRINESH, trinesh"')
-  }
-  if (language === undefined || language === "") {
-    req.flash('errorTwo', "Please choose language")
-  }
+    if (name != name.match(char)){
+      req.flash('errorThree', 'Please enter the right format eg."Trinesh, TRINESH, trinesh"')
+    }
+    if (language === undefined || language === "") {
+      req.flash('errorTwo', "Please choose language")
+    } 
 
+  res.render("home", {returnsValues, count});
 });
 
 

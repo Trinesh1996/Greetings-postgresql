@@ -60,7 +60,7 @@ app.post('/greetings', async function(req, res){
     let name = req.body.theUsers;
     let language = req.body.LanguageType;
 
-        let char = /^[A-Za-z]+$/;
+    let char = /^[A-Za-z]+$/;
 
     
     // console.log(req.body);
@@ -77,16 +77,14 @@ app.post('/greetings', async function(req, res){
       req.flash('errorTwo', "Please choose language")
     }
 
-
-
-  res.render("home", {returnsValues, count});
+    res.render("home", {returnsValues, count});
 });
 
 
 app.get("/reset", async function(req, res, next){
   let reset = await GreetingUsers.reset();
   
-  res.redirect("/")
+  res.redirect("/") 
 })
 app.get("/resetTwo", async function(req, res, next){
   let reset = await GreetingUsers.resetTwo();

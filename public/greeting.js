@@ -3,6 +3,7 @@ module.exports = function(pool){
   // use of regular expressions for 
   // re a sequence of characters that define a search pattern
   // used by string searching algorithms
+
   async function user_names_lang(language, name) {
     
     let char = /^[A-Za-z]+$/;
@@ -31,7 +32,6 @@ module.exports = function(pool){
         }
       }
   }
-
   async function getCounts(user){
     let greets = await pool.query('select count_no from users where user_name = $1', [user]);
       return greets.rows[0].count_no;      
